@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Torque Unit Converter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="Style.css">
+
+</head>
+
+<body class="font-sans bg-gradient-to-r from-violet-500 to-fuchsia-500 ">
+
+
+
+<header>
+        <nav>
+            <ul>
+                <li><a href="Index.html">Home</a></li>
+                    <li><a href="Page1.html">About</a></li>
+                </li>
+                <li class="dropdown">
+                    <a href="Page2.html" class="dropbtn">Webapps</a>
+                    <div class="dropdown-content">
+                        <a href="Calculator.html">Calculator</a>
+                        <a href="Timer.html">Timer</a>
+                        <a href="Torque.html">Torque Converter</a>
+                        <a href="Color.html">Color Converter</a>
+                        <a href="Word.html">Word Generator</a>
+                    </div>
+                </li>
+                <li id="loginBtn"><a href="Login.html" class="login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+
+    <div class="w-[500px] m-auto text-center p-8 bg-[#F2F3F4] rounded-[10px] mt-[80px]">
+        <h1 class="text-2xl mb-5 text-[#333] 
+        font-extrabold"><i>Torque Unit Converter</i></h1>
+        <input type="number" id="torqueValue" placeholder="Enter value" class="p-3 w-full rounded box-border mt-[10px] mr-[10px]">
+        <select id="fromUnit" class="p-3 w-full rounded box-border mt-[10px] mr-[10px]">
+            <option value="Nm" class="">Newton-meters (Nm)</option>
+            <option value="lb-ft">Pound-feet (lb-ft)</option>
+        </select>
+        <select id="toUnit" class="p-3 w-full rounded box-border mt-[10px] mr-[10px]">
+            <option value="Nm">Newton-meters (Nm)</option>
+            <option value="lb-ft">Pound-feet (lb-ft)</option>
+        </select>
+        <button onclick="convertTorque()" class="p-3 w-full rounded-full box-border mt-[10px] mr-[10px] bg-blue-600 text-white cursor-pointer font-medium">Convert</button>
+        <p id="result" class="text-lg text-[#333] mt-[20px]">Result: </p>
+    </div>
+
+    <script>
+        // Conversion logic function
+        function convertTorque() {
+            const value = parseFloat(document.getElementById('torqueValue').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+
+            // Checking for an empty field
+            if (!value) {
+                // Display an error message if the value is not entered
+                document.getElementById('result').innerText = `Please enter the input value!`;
+                return;
+            }
+
+            // Define conversion rates for units
+            const conversionRates = { 'Nm': 1, 'lb-ft': 0.737562149277 };
+
+            // Calculate the converted value
+            const convertedValue = (value * conversionRates[toUnit]) / conversionRates[fromUnit];
+
+            // Display the result with two decimal places
+            document.getElementById('result').innerHTML = `Result: ${convertedValue.toFixed(2)} ${toUnit}`;
+        }
+    </script>
+
+</body>
+
+</html>
